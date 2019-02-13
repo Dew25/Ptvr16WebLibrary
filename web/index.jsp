@@ -20,7 +20,7 @@
         <a href="showRegistration">Зарегистрироваться</a><br>
         <a href="showChangePassword">Изменить пароль</a><br>
         Для библиотекаря<br>
-        
+        <a href="showPermisionName">Добавить разрешение</a>
         <a href="showListReaders">Список читателей</a><br>
         <a href="showPageForGiveBook">Выдать книгу</a><br>
         <a href="showPageForReturnBook">Вернуть книгу</a><br>
