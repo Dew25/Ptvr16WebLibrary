@@ -5,6 +5,7 @@
  */
 package entity.secure;
 
+import entity.Role;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,13 +24,16 @@ public class Permision {
     private Long id;
     @OneToOne
     private PermisionName permisionName;
+    @OneToOne
+    private Role role;
     
 
     public Permision() {
     }
 
-    public Permision(PermisionName permisionName) {
+    public Permision(PermisionName permisionName, Role role) {
         this.permisionName = permisionName;
+        this.role = role;
         
     }
 
@@ -87,6 +91,14 @@ public class Permision {
                 + "id=" + id 
                 + ", permisionName=" + permisionName.getName()
                 + '}';
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     

@@ -13,15 +13,32 @@
         <title>Разрешения</title>
     </head>
     <body>
-        <h1>Разрешения!</h1>
+        <h1>Добавть новое имя разрешения</h1>
         <form action="createPermisionName" method="POST">
-            <select name="permision">
+            <select name="permisionNameId">
                 <c:forEach var="permisionName" items="${listPermisionNames}">
                     <option value="${permisionName.id}">${permisionName.name}</option>
                 </c:forEach>
             </select>
             <input type="text" name="newPermisionName">
+            <input type="submit" value="Добавить">
         </form>
+         <h1>Добавить разрешение!</h1>
+        <form action="createPermisions" method="POST">
+            <select name="permisionNameId">
+                <c:forEach var="permisionName" items="${listPermisionNames}">
+                    <option value="${permisionName.id}">${permisionName.name}</option>
+                </c:forEach>
+            </select>
+            <select name="roleId">
+                <c:forEach var="role" items="${listRoles}">
+                    <option value="${role.id}">${role.name}</option>
+                </c:forEach>
+            </select>
+            
+            <input type="submit" value="Добавить">
+        </form>
+        
         
     </body>
 </html>

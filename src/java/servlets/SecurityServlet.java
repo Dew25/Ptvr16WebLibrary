@@ -9,8 +9,11 @@ import entity.Reader;
 import entity.Role;
 import entity.User;
 import entity.UserRoles;
+import entity.secure.Permision;
 import entity.secure.PermisionName;
+import entity.secure.RolePermision;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -19,9 +22,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import session.PermisionFacade;
 import session.PermisionNameFacade;
 import session.ReaderFacade;
 import session.RoleFacade;
+import session.RolePermisionFacade;
 import session.UserFacade;
 import session.UserRolesFacade;
 import utils.Encription;
@@ -40,6 +45,8 @@ import utils.Encription;
     "/changePassword",
     "/showPermisionName",
     "/createPermisionName",
+    "/showPermisions",
+    "/createPermisions",
 
 })
 public class SecurityServlet extends HttpServlet {
@@ -48,11 +55,13 @@ public class SecurityServlet extends HttpServlet {
     @EJB private RoleFacade roleFacade;
     @EJB private UserRolesFacade userRolesFacade;
     @EJB private PermisionNameFacade permisionNameFacade;
+    @EJB private PermisionFacade permisionFacade;
+    @EJB private RolePermisionFacade rolePermisionFacade;
 
     @Override
     public void init() throws ServletException {
         List<User> listUsers = userFacade.findAll();
-        if(listUsers.size() != 0){return;}
+        if(!listUsers.isEmpty()){return;}
         Reader reader = new Reader("juri.melnikov@ivkhk.ee", "Juri", "Melnikov");
         readerFacade.create(reader);
         Encription encription = new Encription();
@@ -189,20 +198,43 @@ public class SecurityServlet extends HttpServlet {
                     request.getRequestDispatcher("/showLogin.jsp").forward(request, response);
                     break;    
                     
-                    case "/showPermisionName":
-                        List<PermisionName> listPermisionNames = permisionNameFacade.findAll();
-                        request.setAttribute("listPermisionName", listPermisionNames);
-                        request.getRequestDispatcher("/showPermisionName.jsp").forward(request, response);
+                case "/showPermisionName":
+                    List<PermisionName> listPermisionNames=new ArrayList<>();
+                    List<Role> listRoles=new ArrayList<>();
+                    List<Permision> listPermisions=new ArrayList<>();
+                    try {
+                        listPermisionNames = permisionNameFacade.findAll();
+                        listRoles = roleFacade.findAll();
+                        listPermisions = permisionFacade.findAll();
+                    } catch (Exception e) {
+                        
+                    }
+                    request.setAttribute("listPermisions", listPermisions);
+                    request.setAttribute("listRoles", listRoles);
+                    request.setAttribute("listPermisionNames", listPermisionNames);
+                    request.getRequestDispatcher("/WEB-INF/showPermisionName.jsp").forward(request, response);
                     break;
                     
-                    case "/createPermisionName":
-                        String newPermisionName = request.getParameter("newPermisionName");
-                        PermisionName pn = new PermisionName(newPermisionName);
-                        permisionNameFacade.create(pn);
-                        listPermisionNames = permisionNameFacade.findAll();
-                        request.setAttribute("listPermisionName", listPermisionNames);
-                        request.getRequestDispatcher("/showPermisionName.jsp").forward(request, response);
+                case "/createPermisionName":
+                    String pName = request.getParameter("newPermisionName");
+                    PermisionName pn = new PermisionName(pName);
+                    permisionNameFacade.create(pn);
+                    
+                    listPermisionNames = permisionNameFacade.findAll();
+                    request.setAttribute("listPermisionNames", listPermisionNames);
+                    request.getRequestDispatcher("/WEB-INF/showPermisionName.jsp").forward(request, response);
                     break;
+                case "/createPermisions":
+                    String permisionNameId = request.getParameter("permisionNameId"); 
+                    String roleId = request.getParameter("roleId");
+                    PermisionName permisionName = permisionNameFacade.find(Long.parseLong(permisionNameId));
+                    role = roleFacade.find(Long.parseLong(roleId));
+                    Permision permision = new Permision(permisionName, role);
+                    RolePermision rp = new RolePermision(permision, role);
+                    rolePermisionFacade.create(rp);
+                    request.getRequestDispatcher("/WEB-INF/showPermisionName.jsp").forward(request, response);
+                    break;
+                
             }
         
     }
