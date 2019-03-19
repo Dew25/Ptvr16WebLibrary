@@ -1,27 +1,18 @@
-<%-- 
-    Document   : showLogin
-    Created on : Jan 17, 2019, 9:28:30 AM
-    Author     : Melnikov
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Аутентификация</title>
-    </head>
-    <body>
-        <h1>Войдите!</h1>
-        <p>${info}</p>
+     <div class="col-md-5 offset-md-3 align-self-center">        
+        <h1 class="text-center">Войдите!</h1>
+        <p class="text-center">${info}</p>
+        
         <form action="login" method="POST">
-            Логин:<br>
-            <input type="text" name="login">
-            <br>
-            Пароль:<br>
-            <input type="password" name="password">
-            <br>
-            <input type="submit" value="Войти">
+            <div class="form-group">
+              <label for="login">Логин:</label>
+              <input type="text" class="form-control" id="login" name="login" placeholder="Login">
+            </div>
+            <div class="form-group">
+              <label for="password">Пароль:</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Войти</button>
         </form>
-    </body>
-</html>
+     </div>
+                

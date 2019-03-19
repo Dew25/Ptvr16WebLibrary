@@ -1,39 +1,36 @@
-<%-- 
-    Document   : page3
-    Created on : Dec 10, 2018, 11:03:45 AM
-    Author     : Melnikov
---%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Библиотека</title>
-    </head>
-    <body>
-        <h1>Зарегистрироваться/h1>
-        ${info}<br>
-        <a href="index">Введите данные пользователя</a><br>
-        <form action="registration" method="POST">
-            Имя:<br>
-            <input type="text" name="name"><br>
-            Фамилия:<br>
-            <input type="text" name="surname"><br>
-            Email:<br>
-            <input type="text" name="email"><br>
-            <br>
-            Логин:<br>
-            <input type="text" name="login"><br>
-            <br>
-            Пароль:<br>
-            <input type="text" name="password1"><br>
-            <br>
-            Повторите пароль:<br>
-            <input type="text" name="password2"><br>
-            <br>
-            <input type="submit" value="Зарегистрироваться">
-        </form>
-    </body>
-</html>
+        <div class="col-md-5 offset-md-3 align-self-center">
+            <h2 class="text-center">Регистрация</h2>
+                <p class="text-center" >${info}</p>
+            <h5 class="text-center">Введите данные пользователя</h5>
+            
+            <form action="registration" method="POST">
+                <div class="form-group">
+                  <label for="name">Имя:</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Имя">
+                </div>
+                <div class="form-group">
+                  <label for="surname">Фамилия:</label>
+                  <input type="text" class="form-control" id="surname" name="surname" placeholder="Фамилия">
+                </div>
+                <div class="form-group">
+                  <label for="email">Электронная почта</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Электронная почта">
+                </div>
+                <div class="form-group">
+                  <label for="login">Логин:</label>
+                  <input type="text" class="form-control" id="login" name="login" placeholder="Login">
+                </div>
+                <div class="form-group">
+                  <label for="password1">Пароль:</label>
+                  <input type="password" class="form-control" id="password1" name="password1" placeholder="Пароль">
+                </div>
+                <div class="form-group">
+                  <label for="password2">Повторите пароль:</label>
+                  <input type="password" class="form-control" id="password2" name="password2" placeholder="Повторите пароль">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+            </form>
+
