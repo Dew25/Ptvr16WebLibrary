@@ -12,5 +12,5 @@
         <a href="showPageForReturnBook">Вернуть книгу</a><br>
         <a href="showAddNewBook">Добавить новую книгу</a><br>
         <a href="showChangeRole">Назначить новую роль пользователя</a>
-    </body>
+  
 
