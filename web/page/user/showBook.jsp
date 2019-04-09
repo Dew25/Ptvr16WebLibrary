@@ -14,9 +14,21 @@
     <body>
         <h1>Просмотр книги!</h1>
         Обложка: <br>
-        <img src="insertFile/${cover.path}"  ><br>
+        <img src="insertFile/${selectedCover.path}"><br>
+        <select name="coverId">
+            <c:forEach var="cover" items="${listCovers}">
+                <c:if test="${cover eq selectedCover}">
+                    <option selected value="${cover.id}">${cover.name}</option>
+                </c:if>
+                <c:if test="${cover ne selectedCover}">
+                    <option value="${cover.id}">${cover.name}</option>
+                </c:if>
+            </c:forEach>
+        </select>
         Заголовок: ${book.name}<br>
         Автор: ${book.author}<br>
-        Доступно книг: ${book.count}
+        Доступно книг: ${book.count}<br>
+        <a href="showEditBook?id=${book.id}">Редактировать запись</a>
+        
     </body>
 </html>
