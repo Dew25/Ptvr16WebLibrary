@@ -146,8 +146,8 @@ public class ManagerController extends HttpServlet {
                 request.getRequestDispatcher(PagePathLoader.getPagePath("managerIndex")).forward(request, response);
                 break;
             case "/showEditBook":
-                String id = request.getParameter("id");
-                book = bookFacade.find(new Long(id));
+                bookId = request.getParameter("bookId");
+                book = bookFacade.find(new Long(bookId));
                 request.setAttribute("book", book);
                 Cover selectedCover = coverBookFacade.findCover(book);
                 request.setAttribute("selectedCover", selectedCover);
@@ -156,25 +156,26 @@ public class ManagerController extends HttpServlet {
                 request.getRequestDispatcher(PagePathLoader.getPagePath("showEditBook")).forward(request, response);
                 break;
             case "/editBook":
-                id = request.getParameter("id");
+                bookId = request.getParameter("bookId");
                 name = request.getParameter("name");
                 author = request.getParameter("author");
                 isbn = request.getParameter("isbn");
-                count = request.getParameter("count");
+                String quantity = request.getParameter("quantity");
                 coverId = request.getParameter("coverId");
                 cover = coverFacade.find(new Long(coverId));
-                book = bookFacade.find(new Long(id));
+                book = bookFacade.find(new Long(bookId));
                 book.setName(name);
                 book.setAuthor(author);
                 book.setIsbn(isbn);
-                book.setCount(new Integer(count));
-                coverBook = coverBookFacade.find(id);
+                book.setQuantity(new Integer(quantity));
+                bookFacade.edit(book);
+                coverBook = coverBookFacade.findCoverBookByBookId(new Long(bookId));
                 coverBook.setBook(book);
                 coverBook.setCover(cover);
                 coverBookFacade.edit(coverBook);
-                listCovers = coverFacade.findAll();
-                request.setAttribute("listCovers", listCovers);
-                request.getRequestDispatcher(PagePathLoader.getPagePath("managerIndex")).forward(request, response);
+                //listCovers = coverFacade.findAll();
+                request.setAttribute("book", book);
+                request.getRequestDispatcher("/showBook").forward(request, response);
                 break;
             case "/showAddNewReader":
                 request.getRequestDispatcher(PagePathLoader.getPagePath("showAddNewReader")).forward(request, response);

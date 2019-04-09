@@ -64,11 +64,11 @@ public class InsertFileController extends HttpServlet {
             return;
         }
         if(!rl.isRole(RoleLogic.ROLE.USER.toString(), regUser)){
-            request.setAttribute("info", "Вы должны быть администратором!");
+            request.setAttribute("info", "Вы должны войти в систему!");
             request.getRequestDispatcher("/showLogin").forward(request, response);
             return;
         }
-        request.setAttribute("role", rl.getRole(regUser));
+        //request.setAttribute("role", rl.getRole(regUser));
         
         String requestedFile = request.getPathInfo();
         if(requestedFile == null){

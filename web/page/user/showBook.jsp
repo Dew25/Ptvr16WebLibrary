@@ -4,6 +4,7 @@
     Author     : Melnikov
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,22 +14,18 @@
     </head>
     <body>
         <h1>Просмотр книги!</h1>
+        <p>${info}</p>
+        <a href="index">На главную</a><br>
         Обложка: <br>
-        <img src="insertFile/${selectedCover.path}"><br>
-        <select name="coverId">
-            <c:forEach var="cover" items="${listCovers}">
-                <c:if test="${cover eq selectedCover}">
-                    <option selected value="${cover.id}">${cover.name}</option>
-                </c:if>
-                <c:if test="${cover ne selectedCover}">
-                    <option value="${cover.id}">${cover.name}</option>
-                </c:if>
-            </c:forEach>
-        </select>
+        <img src="insertFile/${cover.path}"><br>
         Заголовок: ${book.name}<br>
         Автор: ${book.author}<br>
-        Доступно книг: ${book.count}<br>
-        <a href="showEditBook?id=${book.id}">Редактировать запись</a>
+        Доступно книг: ${book.quantity}<br>
+        <c:if test="${notUser eq true}">
+            <a href="showEditBook?bookId=${book.id}">Редактировать запись</a>
+        </c:if>
+        
+        
         
     </body>
 </html>

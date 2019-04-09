@@ -78,7 +78,7 @@ public class UserController extends HttpServlet {
             request.setAttribute("info", "Вы должны залогииться!");
             request.getRequestDispatcher("/showLogin").forward(request, response);
         }
-        request.setAttribute("role", rl.getRole(regUser));
+        //request.setAttribute("role", rl.getRole(regUser));
         
         String path = request.getServletPath();
         
@@ -119,6 +119,8 @@ public class UserController extends HttpServlet {
                 String bookId = request.getParameter("bookId");
                 Book book = bookFacade.find(new Long(bookId));
                 Cover cover = coverBookFacade.findCover(book);
+                boolean notUser = rl.isRole(RoleLogic.ROLE.MANAGER.toString(), regUser);
+                request.setAttribute("notUser", notUser);
                 request.setAttribute("cover", cover);
                 request.setAttribute("book", book);
                 request.getRequestDispatcher(PagePathLoader.getPagePath("showBook")).forward(request, response);

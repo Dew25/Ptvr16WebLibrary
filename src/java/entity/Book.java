@@ -25,12 +25,12 @@ public class Book implements Serializable{
     public Book() {
     }
 
-    public Book(String isbn, String name, String author, int count) {
+    public Book(String isbn, String name, String author, int quantity) {
         this.isbn = isbn;
         this.name = name;
         this.author = author;
-        this.count = count;
-        this.quantity = count;
+        this.count = quantity;
+        this.quantity = quantity;
     }
 
     public String getIsbn() {
@@ -59,8 +59,16 @@ public class Book implements Serializable{
 
     @Override
     public String toString() {
-        return "Book{" + "isbn=" + isbn + ", name=" + name + ", author=" + author + '}';
+        return "Book{" + "id=" + id 
+                + ", isbn=" + isbn 
+                + ", name=" + name 
+                + ", author=" + author
+                + ", count=" + count 
+                + ", quantity=" + quantity 
+                + '}';
     }
+
+  
 
     public Long getId() {
         return id;

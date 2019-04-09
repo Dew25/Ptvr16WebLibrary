@@ -18,7 +18,7 @@
         <a href="index">Главная страница</a><br>
         <a href="showUploadFile">Загрузить изображение обложки книги</a>
         <form action="editBook" method="POST">
-            <input type="hidden" name="id" value="${book.id}"
+            <input type="hidden" name="bookId" value="${book.id}"
             Название:<br>
             <input type="text" name="name" value="${book.name}"><br>
             Автор:<br>
@@ -26,7 +26,7 @@
             ISBN:<br>
             <input type="text" name="isbn" value="${book.isbn}"><br>
             Количество экземпляров:<br>
-            <input type="text" name="count" value="${book.count}"><br>
+            <input type="text" name="quantity" value="${book.quantity}"><br>
             <br>
             Обложка книги:<br>
             <select name="coverId">

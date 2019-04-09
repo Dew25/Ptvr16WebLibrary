@@ -41,5 +41,15 @@ public class CoverBookFacade extends AbstractFacade<CoverBook> {
             return null;
         }
     }
+
+    public CoverBook findCoverBookByBookId(Long bookId) {
+        try {
+            return (CoverBook) em.createQuery("SELECT cb FROM CoverBook cb WHERE cb.book.id = :bookId")
+                    .setParameter("bookId", bookId)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
     
 }
