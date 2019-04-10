@@ -37,6 +37,7 @@ import utils.PagePathLoader;
  */
 @WebServlet(name = "ManagerController", urlPatterns = {
     "/showListReaders",
+    "/showListReadersAjax",
     "/showPageForGiveBook",
     "/showPageForReturnBook",
     "/giveBook",
@@ -102,6 +103,9 @@ public class ManagerController extends HttpServlet {
                 request.setAttribute("listReaders", listReaders);
                 request.setAttribute("info", "showListReaders,привет из сервлета!");
                 request.getRequestDispatcher(PagePathLoader.getPagePath("showListReaders")).forward(request, response);
+                break;
+            case "/showListReadersAjax":
+                request.getRequestDispatcher(PagePathLoader.getPagePath("showListReadersAjax")).forward(request, response);
                 break;
             case "/showPageForGiveBook":
                 List<Book> listBooks = bookFacade.findAll();

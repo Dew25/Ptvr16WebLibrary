@@ -7,11 +7,19 @@
         <title>Библиотека</title>
     </head>
     <body>
+        <link rel="stylesheet" href="css/showListReadersAjax.css"/>
         <h1>Список читателей</h1>
-        ${info}<br>
+        <p id="info"></p>
         <a href="index">Главная страница</a><br>
         <div id="listReaders">
-            
+            <ul id="readers"></ul>
         </div>
+        <input type="button" id="addNewReader" value="Добавить нового пользователя">
+        <div class="off" id="showRegistration">
+            <c:import url="addNewUserAjax.jsp"></c:import>
+        </div>
+        
+        <script src="js/showListReadersAjax.js"></script>
     </body>
+    
 </html>

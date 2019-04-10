@@ -1,11 +1,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
         <div class="col-md-5 offset-md-3 align-self-center">
-            <h2 class="text-center">Регистрация</h2>
-                <p class="text-center" >${info}</p>
             <h5 class="text-center">Введите данные пользователя</h5>
-            
-            <form action="ajax/registration" method="POST">
+            <form id="form">
                 <div class="form-group">
                   <label for="name">Имя:</label>
                   <input type="text" class="form-control" id="name" name="name" placeholder="Имя">
@@ -30,6 +27,5 @@
                   <label for="password2">Повторите пароль:</label>
                   <input type="password" class="form-control" id="password2" name="password2" placeholder="Повторите пароль">
                 </div>
-                <button type="submit" id="registration" class="btn btn-primary">Зарегистрироваться</button>
+                <button type="button" id="registration" class="btn btn-primary">Зарегистрироваться</button>
             </form>
-
