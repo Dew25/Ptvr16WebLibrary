@@ -1,5 +1,5 @@
 
-       <H3 class="text-center">Вы вошли как администратор приложения</H3>
+       <H3 class="text-center">Вы вошли как пользователь приложения</H3>
             <c:if test="${info ne null}">
                 <div class="alert alert-primary" role="alert">${info}</div>
             </c:if>
