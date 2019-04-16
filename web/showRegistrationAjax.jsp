@@ -5,7 +5,7 @@
                 <p class="text-center" >${info}</p>
             <h5 class="text-center">Введите данные пользователя</h5>
             
-            <form action="registration" method="POST">
+            <form action="ajax/registration" method="POST">
                 <div class="form-group">
                   <label for="name">Имя:</label>
                   <input type="text" class="form-control" id="name" name="name" placeholder="Имя">
