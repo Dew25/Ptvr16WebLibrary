@@ -13,7 +13,7 @@
         <title>Библиотека</title>
     </head>
     <body>
-        <h1>Добавить книгу/h1>
+        <h1>Добавить книгу</h1>
         ${info}<br>
         <a href="index">Главная страница</a><br>
         <form action="returnBook" method="POST">
